@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row">
+        <div class="col-4 offset-4 mt-5" style="border: solid 1px gray; padding: 20px;">
+            <form #SignIn="ngForm" (submit)="submited()">
+                <h2>Login</h2>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" name="email" [(ngModel)]="email" required email #emailControl="ngModel">
+                    <div *ngIf="emailControl.invalid && emailControl.touched">
+                        <div *ngIf="emailControl.errors?.['required']" class="form-text text-danger">This Field Is Required</div>
+                        <div *ngIf="emailControl.errors?.['email']" class="form-text text-danger">Email Is Invalid</div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" name="password" [(ngModel)]="password" required minlength="4" #passwordControl="ngModel">
+                    <div *ngIf="passwordControl.invalid && passwordControl.touched">
+                        <div *ngIf="passwordControl.errors?.['required']" class="form-text text-danger">This Field Is Required</div>
+                        <div *ngIf="passwordControl.errors?.['minlength']" class="form-text text-danger">Minimum Length 4 Characters</div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary" [disabled]="SignIn.invalid">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
